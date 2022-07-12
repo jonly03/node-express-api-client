@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="dest_container"></div>
+
+    <script>
+      // Make a request to localhost:3000/destinations
+      // Get the data and use it to create a card
+      fetch("http://localhost:3000/destinations")
+        .then((res) => res.json())
+        .then((data) => {
+          for (let dest of data) {
+            const location = dest.location;
+
+            const locationElt = document.createElement("p");
+            locationElt.innerText = location;
+            document.getElementById("dest_container").appendChild(locationElt);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    </script>
+  </body>
+</html>
